@@ -1,5 +1,8 @@
 # 🔐 Politique de confidentialité — Uriel
 
+[← Accueil](README.md) · [Documentation](DOCUMENTATION.md) · [Versions](VERSIONS.md)
+
+
 **Dernière mise à jour : 27 septembre 2026**
 
 Cette politique décrit les données utilisées par **Uriel**, bot Discord privé développé pour la compagnie libre **Anges – Apocalypse**.

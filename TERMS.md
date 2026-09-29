@@ -1,5 +1,8 @@
 # 📜 Conditions d'utilisation — Uriel
 
+[← Accueil](README.md) · [Documentation](DOCUMENTATION.md) · [Versions](VERSIONS.md)
+
+
 **Dernière mise à jour : 27 septembre 2026**
 
 **Uriel** est un bot Discord privé développé pour faciliter l'organisation des sorties de la compagnie libre **Anges – Apocalypse**.

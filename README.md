@@ -4,31 +4,29 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-## ⚙️ Fonctionnalités
+> **Version documentée : 1.0.3**
+
+## 📚 Documentation
+
+- **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, architecture, stockage et exploitation.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions v1.0.1 à v1.0.3.
+- **[Politique de confidentialité](PRIVACY.md)**
+- **[Conditions d'utilisation](TERMS.md)**
+
+## ⚙️ Fonctionnalités principales
 
 Uriel assure notamment :
 
 - les confirmations d'inscription en message privé ;
 - les rappels avant les sorties ;
-- le suivi des absences et désistements ;
+- le suivi des absences, inscriptions provisoires et désistements ;
 - les notifications en cas de modification ou d'annulation d'une sortie ;
-- la génération de fichiers `.ics` permettant d'ajouter une sortie à un calendrier personnel.
-
-Uriel fonctionne uniquement à partir des informations nécessaires à ces fonctionnalités.
-
-## 🔐 Confidentialité
-
-Les informations relatives au traitement des données sont disponibles dans la :
-
-**[Politique de confidentialité](PRIVACY.md)**
-
-Les conditions d'utilisation sont disponibles ici :
-
-**[Conditions d'utilisation](TERMS.md)**
+- la génération de fichiers `.ics` permettant d'ajouter une sortie à un calendrier personnel ;
+- le nettoyage de ses messages et données lorsqu'une sortie est supprimée.
 
 ## 💡 Évolution du projet
 
-Uriel est un projet évolutif et participatif.
+Uriel est un projet évolutif et participatif. La documentation publique est mise à jour avec les nouvelles versions afin de conserver l'historique du fonctionnement du bot.
 
 Les membres d'**Anges – Apocalypse** peuvent proposer des idées et améliorations. Le développement et la maintenance étant réalisés bénévolement sur du temps personnel, les suggestions peuvent nécessiter du temps avant d'être étudiées ou mises en place.
 
