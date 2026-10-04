@@ -6,6 +6,17 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 
 > **Version documentée : 2.0.0**
 
+## 🆕 Dernières mises à jour
+
+### v2.0.0
+
+- ⏳ Rappel **H-3** aux membres encore en **Provisoire**.
+- 📋 Récap **H-2** envoyé au **Leader** et aux **Co-leaders**.
+- 🕒 Nouveau statut **Tard**.
+- ⚔️ Prise en charge du rôle **Tout**.
+
+**[Voir toutes les nouveautés →](UPDATES.md)**
+
 ## 📚 Documentation
 
 - **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
