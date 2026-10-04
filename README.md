@@ -4,12 +4,12 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-> **Version documentée : 1.0.3**
+> **Version documentée : 2.0.0**
 
 ## 📚 Documentation
 
-- **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, architecture, stockage et exploitation.
-- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions v1.0.1 à v1.0.3.
+- **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.0.0.
 - **[Politique de confidentialité](PRIVACY.md)**
 - **[Conditions d'utilisation](TERMS.md)**
 
@@ -17,11 +17,13 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 
 Uriel assure notamment :
 
-- les confirmations d'inscription en message privé ;
-- les rappels avant les sorties ;
+- les confirmations d'inscription en message privé avec fichier calendrier `.ics` ;
+- la prise en charge des statuts Tank, DPS, Heal, Tout, Banc, Tard, Provisoire et Absence ;
+- le rappel général H-24 et le rappel de départ H-30 dans les salons ;
+- le rappel privé H-3 aux membres encore inscrits en Provisoire ;
+- le récapitulatif privé H-2 au Leader et aux Co-leaders ;
 - le suivi des absences, inscriptions provisoires et désistements ;
 - les notifications en cas de modification ou d'annulation d'une sortie ;
-- la génération de fichiers `.ics` permettant d'ajouter une sortie à un calendrier personnel ;
 - le nettoyage de ses messages et données lorsqu'une sortie est supprimée.
 
 ## 💡 Évolution du projet

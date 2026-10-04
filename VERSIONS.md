@@ -60,9 +60,40 @@ La v1.0.0 pose les fondations d'Uriel :
 - Une sortie déjà passée reste suffisamment suivie pour pouvoir être nettoyée lorsqu'elle est supprimée.
 - Une sortie passée supprimée ne génère pas de MP d'annulation.
 
+## v2.0.0 — Suivi opérationnel avant sortie
+
+### Statuts
+
+- Prise en charge du choix **Tout** (`Allrounder`) comme participation confirmée.
+- Prise en charge du statut **Tard** (`Late`).
+- Les rappels H-24 et H-30 concernent désormais Tank, DPS, Heal, Tout, Banc, Tard et Provisoire.
+- Absence reste exclu des rappels.
+
+### H-3 — Régularisation des Provisoires
+
+- Trois heures avant la sortie, chaque membre encore en **Provisoire** reçoit un MP.
+- Le message demande de mettre à jour Raid-Helper dans l'heure : Tank, Heal, DPS, Tout, Banc, Tard ou Absence.
+- En cas de retard, le membre doit prévenir le Leader ou un Co-leader de son heure d'arrivée.
+- Le retard annoncé est limité à **30 minutes maximum** ; au-delà, le membre doit passer en Absence.
+- Uriel ne transforme jamais automatiquement un Provisoire en Absence.
+- L'envoi est mémorisé avec `tentative_reminder_sent`.
+
+### H-2 — Récapitulatif des responsables
+
+- Deux heures avant la sortie, Uriel envoie un MP au **Leader** et à chaque **Co-leader**.
+- Le récapitulatif contient les inscrits confirmés avec leur job, puis les Banc, En retard et Toujours en Provisoire.
+- Les catégories vides sont masquées.
+- Les Absences sont exclues.
+- L'envoi est mémorisé avec `leader_summary_sent`.
+
+### Documentation
+
+- La documentation contient désormais le **texte exact des messages générés par Uriel**, pour les MP comme pour les salons Discord.
+- Les valeurs variables (nom de sortie, membre, rôle, job, date et mentions) sont représentées par des marqueurs explicites.
+
 ### État
 
-La v1.0.3 est la version actuellement documentée en production.
+La **v2.0.0** est la version actuellement documentée en production.
 
 ---
 
