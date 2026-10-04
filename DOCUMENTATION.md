@@ -205,26 +205,49 @@ sudo systemctl status uriel
 sudo journalctl -u uriel -f
 ```
 
-## 16. Messages envoyés par Uriel
+## 16. Catalogue exhaustif des messages envoyés par Uriel
 
-Cette section reproduit **les textes générés par la v2.0.0**. Les éléments entre `<...>` représentent uniquement les valeurs dynamiques insérées au moment de l'envoi.
+Cette section recense **tous les messages utilisateur envoyés par la version 2.0.0 de `main.py`**.
 
-### 16.1 Messages privés
+Les valeurs dynamiques sont représentées entre chevrons :
 
-#### Inscription confirmée
+- `<nom de la sortie>` : titre Raid-Helper de l'événement ;
+- `<date et heure>` : horodatage Discord au format complet ;
+- `<membre>` : nom du membre ;
+- `<job>` : job Raid-Helper ;
+- `<mentions>` : mentions Discord des membres concernés ;
+- `<Leader>` / `<Co-leader>` : mentions des responsables de la sortie.
+
+Les messages ci-dessous conservent le texte, les emojis, le gras, les retours à la ligne et les libellés utilisés par Uriel.
+
+### 16.1 MP — inscription confirmée
+
+**Déclenchement :** inscription dans un statut confirmé ou actif pris en charge par Uriel.
+
+Le rôle affiché peut être **Tank**, **DPS**, **Heal**, **Tout**, **Banc** ou **Tard**.
 
 ```text
 ✅ **Inscription confirmée — <nom de la sortie>**
-Tu es bien inscrit en **<Tank / DPS / Heal / Tout / Banc / Tard>**.
+Tu es bien inscrit en **<rôle>**.
 
-📅 <date et heure Discord>
+📅 <date et heure>
 
 Tu peux ajouter cette sortie à ton calendrier avec le bouton ci-dessous.
 ```
 
-Le MP contient également le fichier `.ics` et le bouton **« 📅 Ajouter à mon calendrier »**.
+Le MP contient également :
 
-#### Inscription provisoire
+- le fichier calendrier `.ics` en pièce jointe ;
+- un bouton lien Discord avec l'emoji `📅` ;
+- le libellé exact du bouton :
+
+```text
+Ajouter à mon calendrier
+```
+
+### 16.2 MP — inscription en Provisoire
+
+**Déclenchement :** inscription en statut Raid-Helper `Tentative`, affiché par Uriel comme **Provisoire**.
 
 ```text
 🟠 **Inscription provisoire — <nom de la sortie>**
@@ -232,22 +255,84 @@ Tu es maintenant inscrit en **Provisoire** pour cette sortie.
 
 ⚠️ Si tu sais finalement que tu ne pourras pas participer, pense impérativement à te remettre en **Absence** sur Raid-Helper afin que l'organisation de la sortie reste claire.
 
-📅 <date et heure Discord>
+📅 <date et heure>
 
 Tu peux ajouter cette sortie à ton calendrier avec le bouton ci-dessous.
 ```
 
-Le MP contient également le fichier `.ics` et le bouton **« 📅 Ajouter à mon calendrier »**.
+Le MP contient également le fichier `.ics` et le même bouton :
 
-#### Confirmation d'absence
+```text
+Ajouter à mon calendrier
+```
+
+### 16.3 MP — confirmation de passage en Absence
+
+**Déclenchement :** désistement d'un membre confirmé lorsque la logique de confirmation d'absence s'applique.
 
 ```text
 Ton passage en **Absent** pour **<nom de la sortie>** a bien été pris en compte.
 
-📅 <date et heure Discord>
+📅 <date et heure>
 ```
 
-#### H-3 — membre toujours Provisoire
+### 16.4 Salon — désistement tardif
+
+**Déclenchement :** un membre confirmé passe en Absence dans les 24 heures précédant la sortie.
+
+```text
+⚠️ **<membre>** vient de se désinscrire de **<nom de la sortie>**.
+Une place de **<rôle>** vient de se libérer !
+```
+
+Les valeurs possibles de `<rôle>` sont celles retournées par Uriel pour les rôles de combat :
+
+```text
+Tank
+DPS
+Heal
+Tout
+```
+
+### 16.5 Salon — réinscription après désistement
+
+Uriel **modifie le message public de désistement existant** au lieu d'en créer un nouveau.
+
+```text
+~~⚠️ **<membre>** s'était désinscrit de **<nom de la sortie>**.~~
+~~Une place de **<rôle>** s'était libérée.~~
+
+✅ **Mise à jour :** **<membre>** s'est finalement réinscrit en **<rôle>**.
+```
+
+Les valeurs possibles de `<rôle>` sont :
+
+```text
+Tank
+DPS
+Heal
+Tout
+```
+
+### 16.6 Salon — modification de l'horaire
+
+**Déclenchement :** modification de la date ou de l'heure Raid-Helper d'un événement déjà connu.
+
+```text
+📅 **Modification — <nom de la sortie>**
+L'horaire de la sortie a été modifié.
+
+Ancien horaire : <ancienne date et heure>
+Nouvel horaire : <nouvelle date et heure>
+
+<mentions>
+```
+
+La ligne `<mentions>` n'est ajoutée que lorsqu'Uriel a des membres à mentionner.
+
+### 16.7 MP H-3 — membre toujours en Provisoire
+
+**Déclenchement :** trois heures avant la sortie pour chaque membre encore en **Provisoire**.
 
 ```text
 ⏳ **Inscription provisoire — <nom de la sortie>**
@@ -263,7 +348,7 @@ Passe-toi en **Tank, Heal, DPS ou Tout**.
 Passe-toi en **Banc**.
 
 🕒 **Tu seras en retard ?**
-Passe-toi en **Tard** et préviens <@Leader> (Leader) ou <@Co-leader> (Co-leader) de ton heure d'arrivée.
+Passe-toi en **Tard** et préviens <Leader> (Leader) ou <Co-leader> (Co-leader) de ton heure d'arrivée.
 
 Le retard est limité à **30 minutes maximum**. Au-delà, passe-toi en **Absence**.
 
@@ -273,9 +358,21 @@ Passe-toi en **Absence**.
 ⚠️ **Merci de ne pas rester en Provisoire une fois ta situation connue.**
 ```
 
-S'il y a plusieurs Co-leaders, ils sont ajoutés au texte. Si Raid-Helper ne fournit exceptionnellement aucun responsable, Uriel écrit **« un responsable de la sortie »**.
+S'il existe plusieurs Co-leaders, Uriel ajoute chaque responsable à la partie correspondante.
 
-#### H-2 — récapitulatif Leader / Co-leader
+Si Raid-Helper ne fournit exceptionnellement aucun responsable, la phrase devient exactement :
+
+```text
+Passe-toi en **Tard** et préviens un responsable de la sortie de ton heure d'arrivée.
+```
+
+### 16.8 MP H-2 — récapitulatif Leader / Co-leaders
+
+**Déclenchement :** deux heures avant la sortie.
+
+Le même récapitulatif est envoyé individuellement au Leader et à chaque Co-leader.
+
+La structure complète possible est :
 
 ```text
 📋 **Récap de la sortie — <nom de la sortie>**
@@ -295,92 +392,157 @@ La sortie commence dans **2 heures**.
 - <membre>
 ```
 
-Chaque bloc vide est omis du message. Le MP est envoyé individuellement au Leader et à chaque Co-leader.
+Chaque catégorie vide est totalement absente du MP.
 
-#### Annulation d'une sortie future
+Ainsi, les variantes réellement possibles sont composées uniquement des blocs qui contiennent au moins un membre :
+
+#### Bloc Inscrits
 
 ```text
-❌ **Sortie annulée — <nom de la sortie>**
-La sortie prévue le <date et heure Discord> a été annulée.
+⚔️ **Inscrits**
+- <membre> — <job>
 ```
 
-### 16.2 Messages dans les salons Discord
+Si Raid-Helper ne fournit pas de job pour un inscrit confirmé, Uriel affiche exactement :
 
-#### H-24 — rappel général
+```text
+- <membre> — Job inconnu
+```
+
+#### Bloc Banc
+
+```text
+🪑 **Banc**
+- <membre>
+```
+
+#### Bloc En retard
+
+```text
+🕒 **En retard**
+- <membre>
+```
+
+#### Bloc Toujours en Provisoire
+
+```text
+⚠️ **Toujours en Provisoire**
+- <membre>
+```
+
+Les membres en **Absence** ne figurent pas dans ce récapitulatif.
+
+### 16.9 Salon H-24 — rappel général
+
+**Déclenchement :** 24 heures avant la sortie.
 
 ```text
 🔔 **Rappel — <nom de la sortie>**
 La sortie commence dans 24 heures !
 
-<mentions des participants concernés>
+<mentions>
 
 ⚠️ **Si vous ne pouvez finalement pas participer, merci de vous passer en `Absence` sur Raid-Helper afin de libérer votre place.**
 ```
 
-#### H-30 — rappel de départ
+Si aucune mention n'est disponible, Uriel n'ajoute pas le bloc `<mentions>`.
+
+Les statuts pouvant être mentionnés sont :
+
+```text
+Tank
+DPS
+Heal
+Tout
+Banc
+Tard
+Provisoire
+```
+
+Les membres en **Absence** sont exclus.
+
+### 16.10 Salon H-30 — rappel de départ
+
+**Déclenchement :** 30 minutes avant la sortie.
 
 ```text
 ⏰ **<nom de la sortie> commence dans 30 minutes !**
-<mentions des participants concernés>
+<mentions>
 ```
 
-#### Modification de l'horaire
+Si aucune mention n'est disponible, seule la première ligne est envoyée.
+
+Les statuts pouvant être mentionnés sont :
 
 ```text
-📅 **Modification — <nom de la sortie>**
-L'horaire de la sortie a été modifié.
-
-Ancien horaire : <ancienne date et heure Discord>
-Nouvel horaire : <nouvelle date et heure Discord>
-
-<mentions des participants concernés>
+Tank
+DPS
+Heal
+Tout
+Banc
+Tard
+Provisoire
 ```
 
-#### Désistement tardif — place libérée
+Les membres en **Absence** sont exclus.
+
+### 16.11 MP — annulation d'une sortie future
+
+**Déclenchement :** suppression d'une sortie future suivie par Uriel.
 
 ```text
-⚠️ **<membre>** vient de se désinscrire de **<nom de la sortie>**.
-Une place de **<Tank / DPS / Heal / Tout>** vient de se libérer !
+❌ **Sortie annulée — <nom de la sortie>**
+La sortie prévue le <date et heure> a été annulée.
 ```
 
-#### Réinscription — modification du message de désistement existant
+Ce MP concerne les inscriptions encore susceptibles de participer :
 
 ```text
-~~⚠️ **<membre>** s'était désinscrit de **<nom de la sortie>**.~~
-~~Une place de **<Tank / DPS / Heal / Tout>** s'était libérée.~~
-
-✅ **Mise à jour :** **<membre>** s'est finalement réinscrit en **<Tank / DPS / Heal / Tout>**.
+Tank
+DPS
+Heal
+Tout
+Banc
+Tard
+Provisoire
 ```
 
-### 16.3 Règles de mentions
+Un membre déjà en **Absence** ne reçoit pas ce MP.
 
-- H-24 et H-30 peuvent mentionner Tank, DPS, Heal, Tout, Banc, Tard et Provisoire.
-- Absence est exclu.
-- Le message public de désistement utilise le nom du membre et ne le ping pas.
-- Le H-3 mentionne directement le Leader et les Co-leaders fournis par Raid-Helper.
+Une sortie déjà passée ne déclenche pas ce MP d'annulation.
 
-### 16.4 Cas volontairement silencieux
+## 17. Cas où Uriel reste volontairement silencieux
 
-- inscription initiale en Absence ;
-- changement de job uniquement ;
-- Banc / Tard → Absence ;
-- rôle confirmé → Provisoire ;
-- Banc / Tard → Provisoire ;
-- Provisoire → Absence ;
-- suppression d'une sortie déjà passée : nettoyage sans MP d'annulation.
+L'absence de message fait partie du comportement attendu dans plusieurs transitions.
 
-## 17. Points de vigilance
+| Situation | Message envoyé |
+|---|---|
+| Inscription initiale en Absence | Aucun |
+| Changement de job uniquement | Aucun |
+| Banc → Absence | Aucun |
+| Tard → Absence | Aucun |
+| Confirmé → Provisoire | Aucun |
+| Banc → Provisoire | Aucun |
+| Tard → Provisoire | Aucun |
+| Provisoire → Absence | Aucun |
+| Suppression d'une sortie déjà passée | Aucun MP d'annulation |
+| Provisoire encore présent à H-3 | MP H-3 |
+| Leader / Co-leader à H-2 | MP récapitulatif H-2 |
 
-- Uriel dépend de Discord et de Raid-Helper.
-- Les secrets et tokens ne doivent jamais être publiés.
-- La base SQLite de production doit être conservée lors des mises à jour.
-- Des messages orphelins issus d'anciens bugs peuvent ne pas être récupérés si leur événement n'est plus connu du suivi actuel.
-- Les textes H-24, H-3, H-2 et H-30 annoncent volontairement un délai fixe correspondant au rappel concerné.
+## 18. Résumé chronologique des messages autour d'une sortie
 
-## 18. Mise à jour du projet
+Pour une sortie normale, Uriel peut produire la séquence suivante :
 
-À chaque évolution : tester localement, valider les scénarios concernés, déployer uniquement les fichiers nécessaires, vérifier la compilation et le service, contrôler les logs, puis mettre à jour cette documentation et l'[historique des versions](VERSIONS.md).
+1. **À l'inscription** : MP de confirmation ou MP Provisoire avec `.ics` et bouton calendrier.
+2. **Lors d'un changement d'horaire** : message public de modification.
+3. **À H-24** : rappel public avec mentions.
+4. **À H-3** : MP individuel aux membres encore Provisoire.
+5. **À H-2** : MP de récapitulatif au Leader et aux Co-leaders.
+6. **À H-30** : rappel public de départ.
+7. **En cas de désistement tardif** : MP de confirmation d'Absence et message public de place libérée.
+8. **En cas de réinscription** : modification du message public de désistement.
+9. **En cas d'annulation d'une sortie future** : MP individuel aux membres concernés.
 
 ---
 
-[← Retour à l'accueil](README.md)
+Fin de la documentation — état **v2.0.0**
