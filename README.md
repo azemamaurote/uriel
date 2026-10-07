@@ -4,23 +4,23 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-> **Version documentée : 2.0.0**
+> **Version documentée : 2.0.1**
 
 ## 🆕 Dernières mises à jour
 
-### v2.0.0
+### v2.0.1
 
-- ⏳ Rappel **H-3** aux membres encore en **Provisoire**.
-- 📋 Récap **H-2** envoyé au **Leader** et aux **Co-leaders**.
-- 🕒 Nouveau statut **Tard**.
-- ⚔️ Prise en charge du rôle **Tout**.
+- 📝 La **description Raid-Helper** est ajoutée aux MP d’inscription.
+- 🔗 Les liens et mentions de salons présents dans la description restent utilisables dans Discord.
+- ❌ Lors d’une annulation, la dernière description connue devient le **message de l’organisateur**.
+- 💾 La description est mémorisée dans SQLite pour rester disponible après la suppression de l’événement.
 
 **[Voir toutes les nouveautés →](UPDATES.md)**
 
 ## 📚 Documentation
 
 - **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
-- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.0.0.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.0.1.
 - **[Politique de confidentialité](PRIVACY.md)**
 - **[Conditions d'utilisation](TERMS.md)**
 
@@ -28,7 +28,7 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 
 Uriel assure notamment :
 
-- les confirmations d'inscription en message privé avec fichier calendrier `.ics` ;
+- les confirmations d'inscription en message privé avec fichier calendrier `.ics` et informations de la description Raid-Helper ;
 - la prise en charge des statuts Tank, DPS, Heal, Tout, Banc, Tard, Provisoire et Absence ;
 - le rappel général H-24 et le rappel de départ H-30 dans les salons ;
 - le rappel privé H-3 aux membres encore inscrits en Provisoire ;

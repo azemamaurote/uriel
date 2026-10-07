@@ -93,7 +93,33 @@ La v1.0.0 pose les fondations d'Uriel :
 
 ### État
 
-La **v2.0.0** est la version actuellement documentée en production.
+La **v2.0.0** introduit le suivi opérationnel H-3 / H-2, le statut Tard et le rôle Tout.
+
+
+## v2.0.1 — Exploitation de la description Raid-Helper
+
+### Inscriptions
+
+- Uriel récupère le champ `description` de l’événement Raid-Helper.
+- La description est ajoutée aux MP d’inscription confirmée et Provisoire sous **« 📝 Informations sur la sortie »**.
+- Les liens et mentions Discord présents dans la description sont conservés tels quels.
+- Si la description est vide, le bloc n’est pas affiché.
+
+### Annulations
+
+- Uriel mémorise en permanence la dernière description connue de chaque événement.
+- Lorsqu’une sortie future est supprimée, cette description est ajoutée au MP d’annulation sous **« 📝 Message de l'organisateur »**.
+- L’organisateur peut donc modifier la description avant la suppression pour communiquer le motif de l’annulation.
+- Une description vide n’ajoute aucun bloc au MP.
+
+### Stockage
+
+- Ajout de `event_description` dans la table SQLite `raid_helper_events`.
+- La migration de la base existante est automatique ; le fichier `uriel.db` n’a pas besoin d’être remplacé.
+
+### État
+
+La **v2.0.1** est la version actuellement documentée en production.
 
 ---
 

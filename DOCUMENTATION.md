@@ -207,7 +207,7 @@ sudo journalctl -u uriel -f
 
 ## 16. Catalogue exhaustif des messages envoyés par Uriel
 
-Cette section recense **tous les messages utilisateur envoyés par la version 2.0.0 de `main.py`**.
+Cette section recense **tous les messages utilisateur envoyés par la version 2.0.1 de `main.py`**.
 
 Les valeurs dynamiques sont représentées entre chevrons :
 
@@ -216,7 +216,8 @@ Les valeurs dynamiques sont représentées entre chevrons :
 - `<membre>` : nom du membre ;
 - `<job>` : job Raid-Helper ;
 - `<mentions>` : mentions Discord des membres concernés ;
-- `<Leader>` / `<Co-leader>` : mentions des responsables de la sortie.
+- `<Leader>` / `<Co-leader>` : mentions des responsables de la sortie ;
+- `<description Raid-Helper>` : contenu de la description de l’événement, conservé tel quel.
 
 Les messages ci-dessous conservent le texte, les emojis, le gras, les retours à la ligne et les libellés utilisés par Uriel.
 
@@ -232,8 +233,13 @@ Tu es bien inscrit en **<rôle>**.
 
 📅 <date et heure>
 
+📝 **Informations sur la sortie**
+<description Raid-Helper>
+
 Tu peux ajouter cette sortie à ton calendrier avec le bouton ci-dessous.
 ```
+
+Si la description Raid-Helper est vide, le bloc `📝 Informations sur la sortie` est entièrement omis.
 
 Le MP contient également :
 
@@ -257,8 +263,13 @@ Tu es maintenant inscrit en **Provisoire** pour cette sortie.
 
 📅 <date et heure>
 
+📝 **Informations sur la sortie**
+<description Raid-Helper>
+
 Tu peux ajouter cette sortie à ton calendrier avec le bouton ci-dessous.
 ```
+
+Si la description Raid-Helper est vide, le bloc `📝 Informations sur la sortie` est entièrement omis.
 
 Le MP contient également le fichier `.ics` et le même bouton :
 
@@ -493,6 +504,9 @@ Les membres en **Absence** sont exclus.
 ```text
 ❌ **Sortie annulée — <nom de la sortie>**
 La sortie prévue le <date et heure> a été annulée.
+
+📝 **Message de l'organisateur**
+<description Raid-Helper>
 ```
 
 Ce MP concerne les inscriptions encore susceptibles de participer :
@@ -506,6 +520,8 @@ Banc
 Tard
 Provisoire
 ```
+
+Si la dernière description connue est vide, le bloc `📝 Message de l'organisateur` est entièrement omis. Uriel conserve cette description en SQLite afin de pouvoir l'utiliser même après la suppression de l'événement.
 
 Un membre déjà en **Absence** ne reçoit pas ce MP.
 
@@ -545,4 +561,4 @@ Pour une sortie normale, Uriel peut produire la séquence suivante :
 
 ---
 
-Fin de la documentation — état **v2.0.0**
+Fin de la documentation — état **v2.0.1**

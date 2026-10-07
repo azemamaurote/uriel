@@ -4,6 +4,22 @@
 
 Cette page présente les nouveautés d'Uriel en version courte. Pour le détail du fonctionnement, consulter la [documentation complète](DOCUMENTATION.md).
 
+## v2.0.1
+
+### 📝 Description dans les MP d’inscription
+
+La description de la sortie renseignée dans **Raid-Helper** est désormais reprise dans les MP d’inscription confirmée et Provisoire. Les liens et mentions de salons Discord présents dans cette description restent directement utilisables par les membres.
+
+### ❌ Motif d’annulation
+
+Lorsqu’une sortie future est supprimée, Uriel ajoute au MP d’annulation la **dernière description connue** sous le titre « Message de l’organisateur ». L’organisateur peut ainsi modifier la description avant de supprimer l’événement afin d’expliquer la raison de l’annulation.
+
+### 💾 Conservation de la description
+
+Uriel mémorise la dernière description Raid-Helper dans SQLite. Elle reste donc disponible pour le MP d’annulation même lorsque l’événement n’est plus accessible via Raid-Helper. Si la description est vide, aucun bloc supplémentaire n’est affiché.
+
+---
+
 ## v2.0.0
 
 ### ⏳ Rappel H-3 — Provisoire
