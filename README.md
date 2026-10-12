@@ -4,9 +4,18 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-> **Version documentée : 2.0.1**
+> **Version documentée : 2.1.0**
 
 ## 🆕 Dernières mises à jour
+
+### v2.1.0 — Fils, rappels Endormi et nettoyage H+24
+
+- Création automatique d'un **fil public unique** pour chaque événement Raid-Helper suivi.
+- Conservation du fil lorsque l'événement est modifié ; suppression du fil lorsque l'événement est supprimé.
+- **MP H-15 et H-5** aux inscrits éligibles disposant du rôle Discord **Endormi**.
+- **Nettoyage automatique H+24**, calculé depuis l'heure de début de l'événement : message Raid-Helper, fil, messages Uriel et données de suivi ; sans MP d'annulation.
+- Contrôle périodique **toutes les minutes** et rattrapage au démarrage.
+- Mise en production sur Oracle Cloud, avec surveillance des salons **HL et Général**.
 
 ### v2.0.1
 
@@ -20,7 +29,7 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 ## 📚 Documentation
 
 - **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
-- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.0.1.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.1.0.
 - **[Politique de confidentialité](PRIVACY.md)**
 - **[Conditions d'utilisation](TERMS.md)**
 
@@ -36,6 +45,8 @@ Uriel assure notamment :
 - le suivi des absences, inscriptions provisoires et désistements ;
 - les notifications en cas de modification ou d'annulation d'une sortie ;
 - le nettoyage de ses messages et données lorsqu'une sortie est supprimée.
+
+**[Guide de déploiement et exploitation →](DEPLOIEMENT.md)**
 
 ## 💡 Évolution du projet
 

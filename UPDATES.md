@@ -4,6 +4,26 @@
 
 Cette page présente les nouveautés d'Uriel en version courte. Pour le détail du fonctionnement, consulter la [documentation complète](DOCUMENTATION.md).
 
+## v2.1.0 — Déploiement du 12 octobre 2026
+
+### 💬 Fils automatiques
+
+Un fil public est créé pour chaque événement Raid-Helper suivi. Il reste associé à l'événement après modification et est supprimé lors du nettoyage.
+
+### ⏰ Rappels Endormi H-15 et H-5
+
+Les inscrits éligibles possédant le rôle Endormi reçoivent deux rappels privés supplémentaires, sans doublon.
+
+### 🧹 Nettoyage automatique H+24
+
+Vingt-quatre heures après l'heure de début, Uriel nettoie automatiquement le message Raid-Helper, le fil et les messages associés, sans envoyer de MP d'annulation. Vérification toutes les minutes et au redémarrage.
+
+### 🚀 Production
+
+Déploiement sur Oracle Cloud : salons HL et Général surveillés ; connexion du bot et création d'un fil vérifiées sur le serveur réel. Les autres nouvelles fonctions avaient été validées en environnement de test.
+
+---
+
 ## v2.0.1
 
 ### 📝 Description dans les MP d’inscription

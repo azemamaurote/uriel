@@ -3,7 +3,7 @@
 [← Accueil](README.md) · [Documentation](DOCUMENTATION.md) · [Versions](VERSIONS.md)
 
 
-**Dernière mise à jour : 27 septembre 2026**
+**Dernière mise à jour : 12 octobre 2026**
 
 Cette politique décrit les données utilisées par **Uriel**, bot Discord privé développé pour la compagnie libre **Anges – Apocalypse**.
 
@@ -19,7 +19,9 @@ Pour assurer le suivi des sorties organisées avec Raid-Helper, Uriel traite uni
 - association entre un membre et une sortie ;
 - identifiant, nom, date et heure de la sortie ;
 - salon Discord associé ;
-- état des rappels et messages nécessaires au suivi de la sortie.
+- état des rappels et messages nécessaires au suivi de la sortie ;
+- identifiants des fils Discord associés aux événements ;
+- état des rappels privés Endormi H-15/H-5.
 
 ## Utilisation des données
 

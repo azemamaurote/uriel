@@ -2,7 +2,7 @@
 
 [← Accueil](README.md) · [Historique des versions](VERSIONS.md) · [Confidentialité](PRIVACY.md) · [Conditions](TERMS.md)
 
-**Version actuelle documentée : 2.0.0**
+**Version actuelle documentée : 2.1.0 (documentation du déploiement du 12 octobre 2026)**
 
 ## 1. Présentation
 
@@ -130,6 +130,10 @@ Les catégories vides sont masquées. Les Absences ne sont pas affichées. L'env
 
 Lorsque la date ou l'heure d'un événement change, Uriel détecte la modification et informe les participants concernés. Les indicateurs de rappel de l'événement sont réinitialisés afin que les rappels correspondant au nouvel horaire puissent être réévalués. Les changements de job d'un participant restent silencieux.
 
+## 9 bis. Fils de discussion automatiques
+
+Uriel crée **un fil public par message d'événement Raid-Helper** dans les salons surveillés. Il conserve la référence du fil en SQLite afin d'éviter d'en créer un second lors d'une modification ou d'un redémarrage. Le fil est supprimé lors du nettoyage de l'événement, qu'il s'agisse d'une suppression manuelle ou du nettoyage H+24. La création/suppression dépend des permissions Discord du bot.
+
 ## 10. Suppression et nettoyage
 
 Uriel gère la suppression directe d'un événement sur Discord et les suppressions détectées via Raid-Helper. Le contrôle périodique permet notamment de retrouver un événement connu qui n'est plus découvert normalement ; une réponse API `404` peut alors déclencher le nettoyage.
@@ -138,6 +142,7 @@ Uriel gère la suppression directe d'un événement sur Discord et les suppressi
 |---|---|---|
 | Événement futur supprimé | Oui | Oui, pour les participants concernés |
 | Événement passé supprimé | Oui | Non |
+| Événement atteignant H+24 après son heure de début | Oui, automatique | Non |
 
 Les messages Uriel associés à l'événement et les données SQLite correspondantes sont supprimés.
 
@@ -166,6 +171,8 @@ general_reminder_sent
 departure_reminder_sent
 tentative_reminder_sent
 leader_summary_sent
+
+# Les rappels Endormi et les fils disposent également de leur persistance dédiée.
 ```
 
 La base de production est un état vivant : **elle ne doit pas être remplacée par une base locale lors d'un déploiement**.
@@ -189,6 +196,10 @@ Les appels API utilisent un délai d'attente et plusieurs tentatives contrôlée
 
 ### Production
 
+Configuration déployée le 12 octobre 2026 : salons Discord **HL** (`1522187478340079646`) et **Général** (`1514280298932731954`), rôle **Endormi** (`1559153132884459520`). Le salon de développement (`1542885975070351450`) est conservé dans le code, mais **n'est pas surveillé en production**. Le contrôle de sécurité s'exécute toutes les minutes.
+
+Voir [DEPLOIEMENT.md](DEPLOIEMENT.md) pour la procédure complète et les précautions de sauvegarde.
+
 - Oracle Cloud Always Free
 - Ubuntu 24.04 LTS
 - VM ARM A1 Flex, 1 OCPU / 2 Go de RAM
@@ -207,7 +218,7 @@ sudo journalctl -u uriel -f
 
 ## 16. Catalogue exhaustif des messages envoyés par Uriel
 
-Cette section recense **tous les messages utilisateur envoyés par la version 2.0.1 de `main.py`**.
+Cette section présente le catalogue historique des messages de la v2.0.1 ; les **nouveaux MP Endormi H-15/H-5** de la v2.1.0 sont décrits à la section 16.12.
 
 Les valeurs dynamiques sont représentées entre chevrons :
 
@@ -562,3 +573,20 @@ Pour une sortie normale, Uriel peut produire la séquence suivante :
 ---
 
 Fin de la documentation — état **v2.0.1**
+
+
+### 16.12 MP — rappel Endormi H-15 / H-5 (v2.1.0)
+
+Pour un inscrit éligible disposant du rôle Endormi, Uriel envoie individuellement :
+
+```text
+⏰ Rappel — <titre de la sortie>
+Ta sortie commence dans <15 ou 5> minutes !
+📅 <date et heure Discord>
+```
+
+Les messages sont envoyés dans les fenêtres de rappel définies plus haut. Aucun MP n'est envoyé aux personnes sans le rôle Endormi ou inscrites en Absence/Provisoire.
+
+### 16.13 Suppression automatique H+24 (v2.1.0)
+
+Cette opération est **silencieuse pour les membres** : elle supprime les messages et le fil liés à la sortie, sans MP d'annulation. L'action est consignée dans les logs du service.

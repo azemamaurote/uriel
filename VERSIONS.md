@@ -2,6 +2,19 @@
 
 [← Accueil](README.md) · [Documentation complète](DOCUMENTATION.md)
 
+## v2.1.0 — Fils automatiques, Endormi et nettoyage H+24 (12 octobre 2026)
+
+- Création automatique d'un fil public unique pour chaque événement Raid-Helper surveillé.
+- Conservation du fil lors des modifications ; suppression lors du nettoyage de l'événement.
+- MP H-15 et H-5 réservés aux inscrits éligibles portant le rôle Discord **Endormi** ; déduplication persistante.
+- Suppression automatique **24 heures après l'heure de début** : message Raid-Helper, fil, messages Uriel et état SQLite ; **sans MP d'annulation**.
+- Nettoyage au démarrage et contrôle périodique toutes les minutes.
+- Activation des salons HL et Général de la CL, avec rôle Endormi du serveur de production.
+- Déploiement Oracle Cloud confirmé : connexion Discord et création de fil sur un raid en cours vérifiées en production.
+- Rappels Endormi et nettoyage H+24 validés lors des tests locaux ; leur comportement en conditions réelles reste à observer.
+
+> Cette entrée décrit l'état du code déployé. Elle ne suppose pas qu'un tag Git `v2.1.0` a déjà été créé.
+
 ## v1.0.0 — Première version de production
 
 La v1.0.0 pose les fondations d'Uriel :

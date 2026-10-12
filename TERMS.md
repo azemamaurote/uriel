@@ -3,7 +3,7 @@
 [← Accueil](README.md) · [Documentation](DOCUMENTATION.md) · [Versions](VERSIONS.md)
 
 
-**Dernière mise à jour : 27 septembre 2026**
+**Dernière mise à jour : 12 octobre 2026**
 
 **Uriel** est un bot Discord privé développé pour faciliter l'organisation des sorties de la compagnie libre **Anges – Apocalypse**.
 
