@@ -2,7 +2,7 @@
 
 [← Accueil](README.md) · [Documentation](DOCUMENTATION.md) · [Versions](VERSIONS.md)
 
-**État observé : 12 octobre 2026.** Uriel est hébergé sur Oracle Cloud (Ubuntu) et exécuté par le service `uriel` de `systemd`. Les commandes ci-dessous s'exécutent sur une machine autorisée à administrer cette instance.
+**État observé : 18 octobre 2026.** Uriel est hébergé sur Oracle Cloud (Ubuntu) et exécuté par le service `uriel` de `systemd`. Les commandes ci-dessous s'exécutent sur une machine autorisée à administrer cette instance.
 
 ## Configuration active
 
@@ -25,9 +25,9 @@
 
 ## Procédure de mise à jour sûre
 
-1. Préparer les nouveaux `main.py` **et** `database/database.py` ensemble ; tester leur compatibilité en local.
+1. Préparer les fichiers réellement modifiés et tester leur compatibilité en local. **Pour la mise à jour du 18 octobre, seul `main.py` a changé** : ne pas remplacer inutilement `database/database.py`. Pour une évolution de schéma ou d’API de base, déployer les deux fichiers compatibles ensemble.
 2. Faire une sauvegarde des fichiers de production et de la **base SQLite** avant tout remplacement. Ne jamais remplacer la base de production par une base locale.
-3. Transférer les deux fichiers Python avec un accès SSH/SCP autorisé. Ne pas envoyer `.env`, la base SQLite, les clés SSH ou `.venv` dans le dépôt GitHub.
+3. Transférer le ou les fichiers Python modifiés avec un accès SSH/SCP autorisé. Ne pas envoyer `.env`, la base SQLite, les clés SSH ou `.venv` dans le dépôt GitHub.
 4. Sur le serveur, vérifier la syntaxe et les imports :
 
 ```bash
@@ -68,3 +68,20 @@ En cas de redémarrages répétés, arrêter temporairement le service avec `sud
 ## Sécurité du dépôt
 
 Ne jamais versionner les secrets, clés SSH, fichiers `.env`, bases SQLite de production, caches Python ou environnements virtuels. Vérifier `.gitignore` avant `git add`.
+
+## Déploiement du 18 octobre 2026
+
+- Mise à jour de `main.py` pour centraliser les notifications publiques dans les fils Raid-Helper. Aucun changement de `database/database.py`.
+- Sauvegarde de l’ancien `main.py`, arrêt du service, transfert du nouveau fichier, contrôle de syntaxe, redémarrage du service.
+- Journaux du 18 octobre à 09:50 (heure affichée par le serveur) : connexion `Uriel#4477`, détection des événements, surveillance Raid-Helper temps réel activée, **2 salons de production** et contrôle de sécurité **chaque minute**.
+- Aucun message d’erreur dans l’extrait de journaux communiqué après redémarrage. Vérifier le comportement des notifications sur un prochain événement réel.
+
+Pour restaurer la sauvegarde locale du serveur, si elle a été réalisée sous `main.py.backup` :
+
+```bash
+cd /home/ubuntu/uriel
+sudo systemctl stop uriel
+cp main.py.backup main.py
+sudo systemctl start uriel
+sudo systemctl status uriel --no-pager
+```

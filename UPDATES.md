@@ -4,6 +4,18 @@
 
 Cette page présente les nouveautés d'Uriel en version courte. Pour le détail du fonctionnement, consulter la [documentation complète](DOCUMENTATION.md).
 
+## v2.1.1 — Déploiement du 18 octobre 2026
+
+### 💬 Notifications publiques regroupées dans les fils
+
+Les rappels H-24/H-30, modifications d’horaire, désistements et réinscriptions sont désormais publiés ou mis à jour dans le fil Raid-Helper de chaque événement. Les salons parents restent réservés aux messages d’événement, sans déplacer les anciens messages.
+
+### 🛠️ Correctif et validation
+
+Correction du paramètre `event` dans les deux appels de gestion des messages publics (absence et réinscription). Tests locaux validés avant mise en production. Service Oracle Cloud redémarré avec succès le 18 octobre : connexion et surveillance de deux salons confirmées dans les logs. Le comportement en production des prochaines notifications reste à observer. MP et nettoyage H+24 inchangés.
+
+---
+
 ## v2.1.0 — Déploiement du 12 octobre 2026
 
 ### 💬 Fils automatiques

@@ -2,6 +2,17 @@
 
 [← Accueil](README.md) · [Documentation complète](DOCUMENTATION.md)
 
+## v2.1.1 — Notifications publiques dans les fils (18 octobre 2026)
+
+- Rappels publics H-24 et H-30 publiés dans le fil associé à l’événement Raid-Helper.
+- Notifications publiques de changement de date/heure et de désistement dans ce même fil.
+- Réinscription : mise à jour du message public existant dans le fil, sans nouveau message superflu.
+- Correctif des deux appels à `set_public_message` : transmission de l’argument `event`.
+- Tests de recette réussis, puis déploiement Oracle Cloud ; démarrage et connexion confirmés le 18 octobre 2026.
+- Aucun changement prévu aux MP ni au nettoyage H+24.
+
+> Version de documentation ; ne présume pas de la création d’un tag Git.
+
 ## v2.1.0 — Fils automatiques, Endormi et nettoyage H+24 (12 octobre 2026)
 
 - Création automatique d'un fil public unique pour chaque événement Raid-Helper surveillé.

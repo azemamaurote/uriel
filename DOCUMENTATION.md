@@ -2,7 +2,7 @@
 
 [← Accueil](README.md) · [Historique des versions](VERSIONS.md) · [Confidentialité](PRIVACY.md) · [Conditions](TERMS.md)
 
-**Version actuelle documentée : 2.1.0 (documentation du déploiement du 12 octobre 2026)**
+**Version actuelle documentée : 2.1.1 (mise à jour du 18 octobre 2026)**
 
 ## 1. Présentation
 
@@ -57,7 +57,7 @@ Uriel/
 5. Il envoie, modifie ou supprime les messages nécessaires.
 6. Il conserve l'état utile pour les prochains contrôles.
 
-La surveillance Discord en temps réel est complétée par un **contrôle de sécurité toutes les cinq minutes** sur les derniers messages des salons surveillés.
+La surveillance Discord en temps réel est complétée par un **contrôle de sécurité toutes les minutes** sur les derniers messages des salons surveillés.
 
 ## 5. Statuts Raid-Helper pris en charge
 
@@ -92,7 +92,7 @@ La surveillance Discord en temps réel est complétée par un **contrôle de sé
 
 ## 7. Désistements
 
-Lorsqu'un participant confirmé passe en Absence pendant les 24 dernières heures avant la sortie, Uriel peut envoyer un MP de confirmation et publier un message dans le salon. Le message public ne ping pas le membre. Le dernier rôle de combat est mémorisé afin d'indiquer correctement la place libérée : Tank, DPS, Heal ou Tout.
+Lorsqu'un participant confirmé passe en Absence pendant les 24 dernières heures avant la sortie, Uriel peut envoyer un MP de confirmation et publier un message dans le fil Raid-Helper de la sortie. Le message public ne ping pas le membre. Le dernier rôle de combat est mémorisé afin d'indiquer correctement la place libérée : Tank, DPS, Heal ou Tout.
 
 Un même utilisateur ne doit avoir qu'**un seul message public de suivi par événement**. En cas de réinscription, ce message est modifié plutôt qu'un nouveau message créé.
 
@@ -100,10 +100,10 @@ Un même utilisateur ne doit avoir qu'**un seul message public de suivi par év�
 
 L'ordre fonctionnel des rappels est le suivant :
 
-- **H-24 :** rappel général dans le salon de la sortie.
+- **H-24 :** rappel général dans le fil Raid-Helper de la sortie.
 - **H-3 :** MP à chaque membre encore en Provisoire.
 - **H-2 :** MP récapitulatif au Leader et aux Co-leaders.
-- **H-30 :** rappel de départ dans le salon de la sortie.
+- **H-30 :** rappel de départ dans le fil Raid-Helper de la sortie.
 
 Les rappels publics H-24 et H-30 concernent **Tank, DPS, Heal, Tout, Banc, Tard et Provisoire**. **Absence** est exclu.
 
@@ -128,11 +128,17 @@ Les catégories vides sont masquées. Les Absences ne sont pas affichées. L'env
 
 ## 9. Modification d'une sortie
 
-Lorsque la date ou l'heure d'un événement change, Uriel détecte la modification et informe les participants concernés. Les indicateurs de rappel de l'événement sont réinitialisés afin que les rappels correspondant au nouvel horaire puissent être réévalués. Les changements de job d'un participant restent silencieux.
+Lorsque la date ou l'heure d'un événement change, Uriel détecte la modification et publie une notification avec les mentions des participants concernés dans le fil Raid-Helper de la sortie, **sans MP spécifique de changement d’horaire**. Les indicateurs de rappel de l'événement sont réinitialisés afin que les rappels correspondant au nouvel horaire puissent être réévalués. Les changements de job d'un participant restent silencieux.
 
 ## 9 bis. Fils de discussion automatiques
 
 Uriel crée **un fil public par message d'événement Raid-Helper** dans les salons surveillés. Il conserve la référence du fil en SQLite afin d'éviter d'en créer un second lors d'une modification ou d'un redémarrage. Le fil est supprimé lors du nettoyage de l'événement, qu'il s'agisse d'une suppression manuelle ou du nettoyage H+24. La création/suppression dépend des permissions Discord du bot.
+
+### Centralisation des notifications publiques — 18 octobre 2026
+
+Depuis la mise à jour du 18 octobre, les nouvelles notifications publiques liées à une sortie sont regroupées dans **son fil Raid-Helper**, et non dans le salon parent : rappels H-24 et H-30, changements de date/heure, désistements tardifs et mises à jour de réinscription. Le message public de désistement est réutilisé et modifié lorsqu’un participant revient. Les anciens messages déjà publiés ne sont pas déplacés rétroactivement. Les MP existants sont conservés.
+
+Cette évolution a été testée en recette avant déploiement. Les journaux de production confirment le démarrage, la connexion Discord, la découverte des événements et la surveillance des deux salons ; ils ne constituent pas à eux seuls un test de notification dans un fil en conditions réelles.
 
 ## 10. Suppression et nettoyage
 
@@ -298,7 +304,7 @@ Ton passage en **Absent** pour **<nom de la sortie>** a bien été pris en compt
 📅 <date et heure>
 ```
 
-### 16.4 Salon — désistement tardif
+### 16.4 Fil Raid-Helper — désistement tardif
 
 **Déclenchement :** un membre confirmé passe en Absence dans les 24 heures précédant la sortie.
 
@@ -316,7 +322,7 @@ Heal
 Tout
 ```
 
-### 16.5 Salon — réinscription après désistement
+### 16.5 Fil Raid-Helper — réinscription après désistement
 
 Uriel **modifie le message public de désistement existant** au lieu d'en créer un nouveau.
 
@@ -336,7 +342,7 @@ Heal
 Tout
 ```
 
-### 16.6 Salon — modification de l'horaire
+### 16.6 Fil Raid-Helper — modification de l'horaire
 
 **Déclenchement :** modification de la date ou de l'heure Raid-Helper d'un événement déjà connu.
 
@@ -454,7 +460,7 @@ Si Raid-Helper ne fournit pas de job pour un inscrit confirmé, Uriel affiche ex
 
 Les membres en **Absence** ne figurent pas dans ce récapitulatif.
 
-### 16.9 Salon H-24 — rappel général
+### 16.9 Fil Raid-Helper H-24 — rappel général
 
 **Déclenchement :** 24 heures avant la sortie.
 
@@ -483,7 +489,7 @@ Provisoire
 
 Les membres en **Absence** sont exclus.
 
-### 16.10 Salon H-30 — rappel de départ
+### 16.10 Fil Raid-Helper H-30 — rappel de départ
 
 **Déclenchement :** 30 minutes avant la sortie.
 

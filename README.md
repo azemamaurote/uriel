@@ -4,9 +4,17 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-> **Version documentée : 2.1.0**
+> **Version documentée : 2.1.1**
 
 ## 🆕 Dernières mises à jour
+
+### v2.1.1 — Notifications publiques dans les fils (18 octobre 2026)
+
+- Les rappels publics **H-24 et H-30**, les changements de date/heure et les notifications de désistement/réinscription sont publiés dans le **fil Raid-Helper de la sortie**, plutôt que dans le salon parent.
+- Correction des appels de suivi des absences et réinscriptions pour transmettre le contexte de l’événement au gestionnaire de messages publics.
+- Tests de recette validés ; mise en production sur Oracle Cloud le 18 octobre 2026, connexion et surveillance confirmées par les journaux.
+- Les **MP** et le nettoyage automatique **H+24** ne changent pas.
+
 
 ### v2.1.0 — Fils, rappels Endormi et nettoyage H+24
 
@@ -29,7 +37,7 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 ## 📚 Documentation
 
 - **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
-- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.1.0.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.1.1.
 - **[Politique de confidentialité](PRIVACY.md)**
 - **[Conditions d'utilisation](TERMS.md)**
 
@@ -39,7 +47,7 @@ Uriel assure notamment :
 
 - les confirmations d'inscription en message privé avec fichier calendrier `.ics` et informations de la description Raid-Helper ;
 - la prise en charge des statuts Tank, DPS, Heal, Tout, Banc, Tard, Provisoire et Absence ;
-- le rappel général H-24 et le rappel de départ H-30 dans les salons ;
+- le rappel général H-24 et le rappel de départ H-30 dans le fil de chaque sortie ;
 - le rappel privé H-3 aux membres encore inscrits en Provisoire ;
 - le récapitulatif privé H-2 au Leader et aux Co-leaders ;
 - le suivi des absences, inscriptions provisoires et désistements ;
