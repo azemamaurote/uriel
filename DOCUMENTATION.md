@@ -2,7 +2,7 @@
 
 [← Accueil](README.md) · [Historique des versions](VERSIONS.md) · [Confidentialité](PRIVACY.md) · [Conditions](TERMS.md)
 
-**Version actuelle documentée : 2.1.1 (mise à jour du 18 octobre 2026)**
+**Version actuelle documentée : 2.1.2 (mise à jour du 24 octobre 2026)**
 
 ## 1. Présentation
 
@@ -136,7 +136,9 @@ Uriel crée **un fil public par message d'événement Raid-Helper** dans les sal
 
 ### Centralisation des notifications publiques — 18 octobre 2026
 
-Depuis la mise à jour du 18 octobre, les nouvelles notifications publiques liées à une sortie sont regroupées dans **son fil Raid-Helper**, et non dans le salon parent : rappels H-24 et H-30, changements de date/heure, désistements tardifs et mises à jour de réinscription. Le message public de désistement est réutilisé et modifié lorsqu’un participant revient. Les anciens messages déjà publiés ne sont pas déplacés rétroactivement. Les MP existants sont conservés.
+Depuis la mise à jour du 18 octobre, les nouvelles notifications publiques liées à une sortie sont regroupées dans **son fil Raid-Helper**, et non dans le salon parent : rappels H-24 et H-30, changements de date/heure, désistements tardifs et mises à jour de réinscription. Le message public de désistement est réutilisé et modifié lorsqu’un participant revient. Les anciens messages déjà publiés ne sont pas déplacés automatiquement par le fonctionnement courant du bot. Une migration ponctuelle peut être réalisée par le script dédié décrit dans le guide de déploiement. Les MP existants sont conservés.
+
+**Complément du 24 octobre 2026 :** les scénarios d'accueil et d'épinglage du fil, H-24, H-30, modification d'horaire, absence et réinscription ont été vérifiés sur le Discord de développement. En production, une migration ponctuelle d'un ancien message public vers son fil a été exécutée et sa présence confirmée sur Discord. Le service a redémarré normalement. Le prochain envoi automatique d'une nouvelle notification en production reste à observer.
 
 Cette évolution a été testée en recette avant déploiement. Les journaux de production confirment le démarrage, la connexion Discord, la découverte des événements et la surveillance des deux salons ; ils ne constituent pas à eux seuls un test de notification dans un fil en conditions réelles.
 

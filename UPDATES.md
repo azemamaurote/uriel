@@ -4,6 +4,20 @@
 
 Cette page présente les nouveautés d'Uriel en version courte. Pour le détail du fonctionnement, consulter la [documentation complète](DOCUMENTATION.md).
 
+## v2.1.2 — Migration et vérifications du 24 octobre 2026
+
+### 📦 Migration des anciens messages
+
+Un utilitaire ponctuel `uriel_migration_messages.py` permet d'examiner (`preview`) puis de migrer (`apply`) les messages publics d'Uriel encore associés au salon parent vers le fil de leur événement Raid-Helper. Une migration réelle a été réalisée avec succès : **1 message déplacé, aucune erreur**. Sa présence dans le fil a été confirmée sur Discord.
+
+### 🚀 Production Oracle
+
+`main.py` et `database/database.py` ont été déployés ensemble. Après sauvegarde de SQLite, arrêt du service, migration et contrôle de compilation, le service a redémarré normalement. Les journaux confirment la connexion, la découverte des événements et la surveillance de **2 salons**, avec filet de sécurité **toutes les minutes**.
+
+Les tests de nouvelles notifications dans les fils sont réussis en développement. La prochaine notification automatique en production reste à observer pour clôturer la validation fonctionnelle.
+
+---
+
 ## v2.1.1 — Déploiement du 18 octobre 2026
 
 ### 💬 Notifications publiques regroupées dans les fils

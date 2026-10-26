@@ -2,6 +2,18 @@
 
 [← Accueil](README.md) · [Documentation complète](DOCUMENTATION.md)
 
+## v2.1.2 — Migration des messages publics existants (24 octobre 2026)
+
+- Déploiement conjoint de `main.py` et `database/database.py` sur Oracle Cloud.
+- Sauvegarde préalable de la base SQLite et des fichiers Python de production.
+- Ajout d'une procédure ponctuelle de migration des messages publics historiques vers les fils Raid-Helper avec `uriel_migration_messages.py`.
+- Exécution `preview` : **1 référence** à migrer ; exécution `apply` : **1 message migré, 0 erreur**.
+- Présence du message migré dans le fil Discord confirmée manuellement.
+- Service `uriel` actif après redémarrage ; logs de connexion et de surveillance sans erreur visible au démarrage.
+- Tests de notifications dans les fils validés sur le Discord de développement ; **nouvelle notification automatique en production encore à observer**.
+
+> Numéro de version documentaire ; ne présume pas de la création d'un tag Git ni d'un numéro de version embarqué dans le bot.
+
 ## v2.1.1 — Notifications publiques dans les fils (18 octobre 2026)
 
 - Rappels publics H-24 et H-30 publiés dans le fil associé à l’événement Raid-Helper.

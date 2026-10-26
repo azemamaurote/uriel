@@ -4,9 +4,17 @@
 
 Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des sorties de la compagnie libre.
 
-> **Version documentée : 2.1.1**
+> **Version documentée : 2.1.2**
 
 ## 🆕 Dernières mises à jour
+
+### v2.1.2 — Migration des messages et validation Oracle (24 octobre 2026)
+
+- Déploiement coordonné de `main.py` et `database/database.py` sur Oracle Cloud, après sauvegarde du code et de SQLite.
+- Migration des références de messages publics existants vers les fils Raid-Helper avec `uriel_migration_messages.py` (`preview` puis `apply`).
+- Migration confirmée d'un message de **Canalisations silidiennes extrême — Boss 3 : Zeless Gah** vers son fil Discord.
+- Redémarrage du service `uriel` réussi : connexion Discord, découverte des événements, surveillance des deux salons et contrôle de sécurité chaque minute confirmés dans les journaux.
+- **Reste à confirmer en production :** le prochain envoi automatique d'une nouvelle notification dans le fil. Les scénarios correspondants ont été testés en développement.
 
 ### v2.1.1 — Notifications publiques dans les fils (18 octobre 2026)
 
@@ -37,7 +45,7 @@ Il complète **Raid-Helper** afin de faciliter l'organisation et le suivi des so
 ## 📚 Documentation
 
 - **[Documentation complète](DOCUMENTATION.md)** — fonctionnement, règles métier, messages envoyés, architecture, stockage et exploitation.
-- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.1.1.
+- **[Historique des versions](VERSIONS.md)** — base v1.0.0 puis évolutions jusqu'à la v2.1.2.
 - **[Politique de confidentialité](PRIVACY.md)**
 - **[Conditions d'utilisation](TERMS.md)**
 
